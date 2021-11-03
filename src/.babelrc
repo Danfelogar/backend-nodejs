@@ -1,0 +1,13 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node":true
+                    //con el unico fin de ejecutar la aplicacion
+                }
+            }
+        ]
+    ]
+}
