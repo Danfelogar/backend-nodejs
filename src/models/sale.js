@@ -4,7 +4,7 @@ const SaleSchema = new Schema({
     user:{ type:Schema.ObjectId, ref:'userschema', required:true},
     person:{ type:Schema.ObjectId, ref:'personschema', required:true},
     check_type:{ type:String, maxlength:30, required:true },
-    voucher_series:{ type:Number, maxlength:30, required:true },
+    voucher_series:{ type:String, maxlength:30, required:true },
     tax:{ type:Number, required:true },
     total:{ type:Number, required:true },
     detail:[{

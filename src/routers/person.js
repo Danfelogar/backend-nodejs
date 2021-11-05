@@ -1,20 +1,21 @@
 import routerx from 'express-promise-router';
 import personController from '../controllers/Person';
+import auth from '../middlewares/auth';
 
 const app = routerx();
 
 //post
-app.post('/add',personController.add);
+app.post('/add',auth.verifyUser,personController.add);
 //get
-app.get('/query',personController.query);
-app.get('/list',personController.list);
-app.get('/listCustomers',personController.listCustomer);
-app.get('/listProviders',personController.listProvider);
+app.get('/query',auth.verifyUser,personController.query);
+app.get('/list',auth.verifyUser,personController.list);
+app.get('/listCustomers',auth.verifyUser,personController.listCustomer);
+app.get('/listProviders',auth.verifyUser,personController.listProvider);
 //put
-app.put('/update',personController.update);
-app.put('/activate',personController.activate);
-app.put('/desactivate',personController.desactivate);
+app.put('/update',auth.verifyUser,personController.update);
+app.put('/activate',auth.verifyUser,personController.activate);
+app.put('/desactivate',auth.verifyUser,personController.desactivate);
 //delete
-app.delete('/remove',personController.remove);
+app.delete('/remove',auth.verifyUser,personController.remove);
 
 export default app;

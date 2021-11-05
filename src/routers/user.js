@@ -2,6 +2,7 @@ import routerx  from 'express-promise-router';
 import UserController from '../controllers/User';
 import { check } from 'express-validator';
 import valid from '../middlewares/validFile';
+import auth from '../middlewares/auth';
 
 const app = routerx();
 
@@ -11,17 +12,18 @@ app.post('/add',[
     check('email', 'Email is required').isEmail(),
     check('Password', 'The password must have more than 5 characters').isLength({min:5, max:16}),
     valid.validFiel,
+    auth.verifyUserAdmin
 ], UserController.add );
-app.post('/login', UserController.login );
+app.post('/login',auth.verifyUserAdmin, UserController.login );
 
 //get
-app.get('/query', UserController.query );
-app.get('/list', UserController.list );
+app.get('/query',auth.verifyUserAdmin, UserController.query );
+app.get('/list',auth.verifyUserAdmin, UserController.list );
 
 //put para actualizar, activar o desactivar articulos
-app.put('/update', UserController.update );
-app.put('/activate', UserController.activate );
-app.put('/desactivate', UserController.desactivate );
+app.put('/update',auth.verifyUserAdmin, UserController.update );
+app.put('/activate',auth.verifyUserAdmin, UserController.activate );
+app.put('/desactivate',auth.verifyUserAdmin, UserController.desactivate );
 
 //delete
 app.delete('/remove', UserController.remove);
