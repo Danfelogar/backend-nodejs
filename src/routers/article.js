@@ -1,23 +1,23 @@
 import routerx from 'express-promise-router';
-import { get } from 'mongoose';
+import ArtController from '../controllers/Article';
 
 const app = routerx();
 
 //post
-app.post('/add', );
+app.post('/add',ArtController.add );
 
 //get
-app.get('/query', );
-app.get('/queryCode', );
-app.get('/list', );
+app.get('/query', ArtController.query);
+app.get('/queryCode', ArtController.queryCode);
+app.get('/list', ArtController.list);
 
 //put para actualizar, activar o desactivar articulos
-app.put('/update', );
-app.put('/activate', );
-app.put('/desactivate', );
+app.put('/update', ArtController.update);
+app.put('/activate', ArtController.activate);
+app.put('/desactivate', ArtController.desactivate);
 
 //delete
-app.delete('/remove',);
+app.delete('/remove',ArtController.remove);
 
 
 export default app;

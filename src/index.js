@@ -23,6 +23,9 @@ app.use(morgan('dev'));
 // control de acceso http
 app.use(cors());
 
+app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+
 //definimos nuestras rutas
 app.use('/api', cors(corsOptions), router);
 
